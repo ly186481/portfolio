@@ -281,4 +281,22 @@ JOIN products p
 	ON o.product_id=p.product_id;
 
 -- Joining Across Databases
+SELECT *
+FROM order_items o
+JOIN sql_inventory.products p
+	ON o.product_id = p.product_id;
+
+-- self join
+SELECT *
+FROM sql_hr.employees;
+
+USE sql_hr;
+SELECT *
+FROM employees e
+JOIN employees m
+	ON e.reports_to = m.employee_id
+
+
+
+
 

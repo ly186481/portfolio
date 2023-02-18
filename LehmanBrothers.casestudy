@@ -1,0 +1,34 @@
+#Use data in Yahoo Finance Lehman Brothers Holdings Capital Trust iii(LEHKQ)
+#https://nbviewer.org/github/LCAV/SignalsOfTheDay/blob/master/Lehman_Brothers/LehmanBrothers.ipynb
+#https://www.investopedia.com/articles/economics/09/lehman-brothers-collapse.asp
+
+lehkq <- read.csv("LEHKQ (1).csv")
+head(lehkq)
+View(lehkq)
+summary(lehkq)
+
+library(ggplot2)
+
+#change Date variable to Date class from charater class
+lehkq$Date <- as.Date(lehkq$Date)
+class(lehkq$Date)
+
+#divide graph visual in one space with plot query
+par(mfrow = c(1,2))
+
+#ggplot use grid.arrange() instead of par
+aa <- ggplot(data=lehkq)+
+  geom_line(mapping=aes(x=Date, y=Close))
+
+bb <- ggplot(data=lehkq)+
+  geom_line(mapping=aes(x=Date, y=Volume))
+
+install.packages("gridExtra")
+library(gridExtra)
+install.packages("scales")
+library(scales)
+install.packages("lubridate")
+library(lubridate)
+
+grid.arrange(aa,bb)
+
